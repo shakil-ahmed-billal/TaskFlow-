@@ -1,5 +1,6 @@
 import Footer from "@/components/footer/Footer";
 import Header from "@/components/header/Header";
+import { ClerkProvider } from "@clerk/nextjs";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -20,23 +21,25 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <main>
-          <header>
-            <nav>
-              <Header></Header>
-            </nav>
-          </header>
-          <section>
-            {children}
-          </section>
-        </main>
-        <footer>
-          <Footer></Footer>
-        </footer>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+          <main>
+            <header>
+              <nav>
+                <Header></Header>
+              </nav>
+            </header>
+            <section>
+              {children}
+            </section>
+          </main>
+          <footer>
+            <Footer></Footer>
+          </footer>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
